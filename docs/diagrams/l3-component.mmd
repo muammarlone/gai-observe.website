@@ -1,0 +1,66 @@
+graph TD
+    subgraph "Entry Point"
+        Main[main.jsx<br/>React Root Mount]
+    end
+
+    subgraph "Core Engine - App.jsx"
+        Router[Section Router<br/>Type-based dispatch]
+        AccessGate[AccessGate<br/>Two-step Auth UI]
+    end
+
+    subgraph "Security Layer"
+        Cipher[cipher.js<br/>SHA-256 Hash Verify]
+        FeatureGate[featureGate.js<br/>Tier Check + Supabase]
+        AuditLog[auditLog.js<br/>Event Queue + Flush]
+        SupabaseClient[supabase.js<br/>Client Factory]
+    end
+
+    subgraph "Interactive Components"
+        QuizEngine[QuizEngine<br/>Multi-Q Scoring]
+        Journal[ReflectionJournal<br/>Auto-save + PDF]
+        RICE[RICESandbox<br/>Priority Calculator]
+        ABTest[ABTestCalculator<br/>Statistical Significance]
+        Churn[ChurnCalculator<br/>NRR Analysis]
+        GTM[GTMScorecard<br/>Go-to-Market Scoring]
+        Funnel[FunnelAnalyzer<br/>Conversion Metrics]
+        Template[TemplateViewer<br/>SVG Download]
+    end
+
+    subgraph "Data Layer"
+        ConfigJSON[(config.json<br/>Book Auth Rules)]
+        ChapterData[(chapterN.json<br/>Section Definitions)]
+        DataIndex[data/index.js<br/>Lazy Loader]
+    end
+
+    Main --> AccessGate
+    AccessGate -->|Step 1| SupabaseClient
+    AccessGate -->|Step 2| Cipher
+    AccessGate -->|Unlocked| Router
+
+    Router --> FeatureGate
+    FeatureGate -->|Base tier| QuizEngine
+    FeatureGate -->|Base tier| Journal
+    FeatureGate -->|Base tier| RICE
+    FeatureGate -->|Base tier| ABTest
+    FeatureGate -->|Premium check| Churn
+    FeatureGate -->|Premium check| GTM
+    FeatureGate -->|Premium check| Funnel
+    FeatureGate -->|Base tier| Template
+
+    Router --> DataIndex
+    DataIndex --> ConfigJSON
+    DataIndex --> ChapterData
+
+    QuizEngine --> AuditLog
+    Journal --> AuditLog
+    RICE --> AuditLog
+
+    classDef Entry fill:#8B5CF6,stroke:#fff,color:#fff
+    classDef Security fill:#EF4444,stroke:#fff,color:#fff
+    classDef UI fill:#06B6D4,stroke:#fff,color:#1E293B
+    classDef Data fill:#10B981,stroke:#fff,color:#1E293B
+
+    class Main Entry
+    class AccessGate,Cipher,FeatureGate,AuditLog,SupabaseClient Security
+    class QuizEngine,Journal,RICE,ABTest,Churn,GTM,Funnel,Template,Router UI
+    class ConfigJSON,ChapterData,DataIndex Data

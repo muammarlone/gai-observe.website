@@ -1,0 +1,42 @@
+sequenceDiagram
+    participant R as Reader
+    participant A as AccessGate
+    participant S as Supabase Auth
+    participant C as Cipher Module
+    participant LS as localStorage
+    participant E as Engine (App.jsx)
+    participant D as Chapter JSON
+
+    R->>A: Visit companion URL
+
+    Note over A: Step 1 - Identity Authentication
+    alt OAuth Provider
+        A->>S: signInWithOAuth(google/linkedin)
+        S-->>R: Redirect to provider
+        R-->>S: Authorize
+        S-->>A: Session token + user email
+    else Email Magic Link
+        A->>S: signInWithOtp(email)
+        S-->>R: Magic link email
+        Note over A: User can proceed to cipher<br/>while email verifies
+    else No Supabase (fallback)
+        R->>A: Enter email directly
+        A->>A: Store email locally
+    end
+
+    Note over A: Step 2 - Book Cipher Authorization
+    A->>R: Prompt cipher question<br/>(e.g. "3rd word from page 15")
+    R->>A: Enter cipher answer
+    A->>C: verifyCipher(answer, validHashes[])
+    C->>C: SHA-256(answer.trim().toLowerCase())
+    C-->>A: hash match = true/false
+
+    alt Valid Cipher
+        A->>LS: Store 30-day access token<br/>{ts, email, provider, verified}
+        A->>E: onUnlock(true)
+        E->>D: getChapterData(bookId, chapterId)
+        D-->>E: {title, sections[]}
+        E->>R: Render interactive content
+    else Invalid Cipher
+        A->>R: "Incorrect. Check your book!"
+    end

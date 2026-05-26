@@ -1,0 +1,43 @@
+graph TD
+    subgraph "CMS-Hosted Website"
+        Homepage[Homepage<br/>Link Hub]
+        BookPages[Book Landing Pages]
+        IframeHost[Companion<br/>iframe Container]
+    end
+
+    subgraph "Static SPA - CDN Deployed"
+        ReactApp[React 19 SPA<br/>Vite 8 Build]
+        ChapterJSON[(Chapter JSON<br/>Static Assets)]
+        SVGTemplates[(SVG Template<br/>Library)]
+    end
+
+    subgraph "Client Browser"
+        LocalStorage[(localStorage<br/>Auth Token + Journals)]
+        BlobExport[PDF/Blob Export<br/>Native Browser API]
+    end
+
+    subgraph "External Services"
+        SupabaseAuth[Supabase Auth<br/>OAuth + Magic Link]
+        StripeAPI[Stripe Checkout<br/>Premium Tier]
+        RSSFeeds[RSS/Atom Feeds<br/>News Aggregation]
+    end
+
+    Homepage -->|Navigate| IframeHost
+    IframeHost -->|Loads via CDN| ReactApp
+    ReactApp -->|Reads| ChapterJSON
+    ReactApp -->|Renders| SVGTemplates
+    ReactApp <-->|Read/Write| LocalStorage
+    ReactApp -->|Generates| BlobExport
+    ReactApp -->|Auth flow| SupabaseAuth
+    ReactApp -->|Checkout flow| StripeAPI
+    ReactApp -->|Fetches| RSSFeeds
+
+    classDef CMS fill:#1E293B,stroke:#06B6D4,color:#fff
+    classDef SPA fill:#0F172A,stroke:#8B5CF6,color:#fff
+    classDef Browser fill:#1E293B,stroke:#10B981,color:#fff
+    classDef External fill:#334155,stroke:#F59E0B,color:#fff
+
+    class Homepage,BookPages,IframeHost CMS
+    class ReactApp,ChapterJSON,SVGTemplates SPA
+    class LocalStorage,BlobExport Browser
+    class SupabaseAuth,StripeAPI,RSSFeeds External

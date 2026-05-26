@@ -1,0 +1,37 @@
+graph LR
+    subgraph "Content Authoring"
+        Author[Author] -->|Writes| Book[Published Book]
+        Author -->|Creates| JSON[Chapter JSON Files]
+        Author -->|Designs| SVG[SVG Templates]
+    end
+
+    subgraph "Build Pipeline"
+        JSON -->|Bundled| Vite[Vite Build]
+        SVG -->|Static asset| Vite
+        Vite -->|dist/| CDN[Netlify CDN]
+    end
+
+    subgraph "Reader Experience"
+        CDN -->|Serves| Browser[Reader Browser]
+        Browser -->|Renders| Quiz[Quiz Engine]
+        Browser -->|Renders| Journal[Reflection Journal]
+        Browser -->|Renders| Calc[Calculators]
+        Browser -->|Downloads| Templates[SVG Templates]
+    end
+
+    subgraph "Data Persistence"
+        Journal -->|Auto-save| LS[(localStorage)]
+        Quiz -->|Score event| Audit[Audit Queue]
+        Audit -->|Batch flush| LS
+        Journal -->|Export| PDF[jsPDF Export]
+    end
+
+    classDef Author fill:#8B5CF6,stroke:#fff,color:#fff
+    classDef Build fill:#F59E0B,stroke:#fff,color:#1E293B
+    classDef Runtime fill:#06B6D4,stroke:#fff,color:#1E293B
+    classDef Storage fill:#10B981,stroke:#fff,color:#1E293B
+
+    class Author,Book,JSON,SVG Author
+    class Vite,CDN Build
+    class Browser,Quiz,Journal,Calc,Templates Runtime
+    class LS,Audit,PDF Storage

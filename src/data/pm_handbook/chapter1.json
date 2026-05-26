@@ -1,0 +1,64 @@
+{
+  "id": "chapter1",
+  "title": "Chapter 1: The Evolution of Product Management",
+  "sections": [
+    {
+      "type": "quiz",
+      "heading": "Test Your Instincts",
+      "questions": [
+        {
+          "id": "q1_ch1",
+          "text": "True or False? The core competencies required of product managers in 2010 are identical to those required in 2026.",
+          "options": ["True", "False"],
+          "correctAnswer": "False",
+          "hint": "AI and data-driven tooling have drastically shifted core competencies over the last 15 years."
+        },
+        {
+          "id": "q2_ch1",
+          "text": "Which industry origin is most commonly cited as the birthplace of modern product management?",
+          "options": [
+            "Automotive manufacturing",
+            "FMCG / Consumer Packaged Goods",
+            "Telecommunications",
+            "Aerospace engineering"
+          ],
+          "correctAnswer": "FMCG / Consumer Packaged Goods",
+          "hint": "The 'brand man' memo in 1931 is widely regarded as the origin of product management."
+        }
+      ]
+    },
+    {
+      "type": "tool",
+      "component": "MarketShiftTool",
+      "data": {
+        "eras": [
+          { "year": "1990s", "focus": "Feature-driven waterfall development" },
+          { "year": "2000s", "focus": "Agile adoption and iterative delivery" },
+          { "year": "2010s", "focus": "Growth loops and data-driven experimentation" },
+          { "year": "2020s", "focus": "AI-augmented product intelligence" }
+        ]
+      }
+    },
+    {
+      "type": "reflection",
+      "heading": "Your PM Evolution",
+      "prompt": "Reflect on how your own PM competencies have shifted over the past 5 years. What skills have become more important? What skills have become less relevant?"
+    },
+    {
+      "type": "templates",
+      "heading": "Chapter 1 Templates",
+      "templates": [
+        {
+          "name": "Competency Shift Matrix",
+          "file": "/assets/templates/ch1_competency_shift_matrix.svg",
+          "description": "Map how PM competencies have evolved across industry eras."
+        },
+        {
+          "name": "PM Evolution Timeline",
+          "file": "/assets/templates/ch1_pm_evolution_timeline.svg",
+          "description": "Visual timeline of product management paradigm shifts."
+        }
+      ]
+    }
+  ]
+}

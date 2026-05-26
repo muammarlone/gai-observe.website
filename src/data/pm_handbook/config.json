@@ -1,0 +1,11 @@
+{
+  "bookId": "pm_handbook",
+  "bookTitle": "Product Management Field Guide",
+  "auth": {
+    "cipherPrompt": "Enter the 3rd word from page 15 of your book.",
+    "validAnswerHashes": [
+      "REDACTED_HASH_1",
+      "REDACTED_HASH_2"
+    ]
+  }
+}

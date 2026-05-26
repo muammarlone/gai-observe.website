@@ -1,0 +1,39 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+
+# Environment (never commit secrets)
+.env
+.env.local
+.env.*.local
+
+# Editor / IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Test / Coverage
+coverage/
+htmlcov/
+.coverage
+
+# Supabase local
+supabase/.temp/
+
+# Claude Code internal (not for public repos)
+.claude/handoff/
+.claude/worktrees/
+.claude/settings.local.json
+
+# Logs
+*.log
+npm-debug.log*

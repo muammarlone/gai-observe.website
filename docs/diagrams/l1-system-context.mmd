@@ -1,0 +1,16 @@
+graph TD
+    Reader([Book Reader]) -->|Scans QR / visits URL| Website[gai-observe.online<br/>Publishing Hub]
+    Website -->|Embeds iframe| Companion[Digital Companion<br/>React SPA]
+    Companion -->|OAuth + magic link| Supabase[Supabase Auth]
+    Companion -->|Premium checkout| Stripe[Stripe Gateway]
+    Website -->|Links to bookstore| Retailer[Book Retailer]
+    Reader -->|Subscribes| YouTube[YouTube Channel<br/>@gai-observe.online]
+    Reader -->|Reads feed| NewsFeed[RSS/Atom Sources]
+
+    classDef Actor fill:#8B5CF6,stroke:#F8FAFC,color:#fff
+    classDef System fill:#06B6D4,stroke:#F8FAFC,color:#fff
+    classDef External fill:#334155,stroke:#94A3B8,color:#fff
+
+    class Reader Actor
+    class Website,Companion System
+    class Supabase,Stripe,Retailer,YouTube,NewsFeed External
