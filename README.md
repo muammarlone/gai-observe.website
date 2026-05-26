@@ -131,7 +131,9 @@ See [docs/DEVELOPMENT-GUIDE.md](docs/DEVELOPMENT-GUIDE.md) for full setup instru
 |----------|-------------|
 | [PRD](docs/PRD.md) | Product requirements, personas, success metrics |
 | [Architecture](docs/ARCHITECTURE.md) | L1-L3 system design with Mermaid diagrams |
+| [Security](docs/SECURITY.md) | Threat model, two-step auth, RLS, CSP, OWASP alignment |
 | [Design System](docs/DESIGN-SYSTEM.md) | CSS tokens, component patterns, accessibility |
+| [Webador Learnings](docs/WEBADOR-LEARNINGS.md) | CMS + SPA hybrid patterns, iframe embedding, CORS proxy |
 | [Claude Usage](docs/CLAUDE-USAGE.md) | AI-assisted development methodology and examples |
 | [Development Guide](docs/DEVELOPMENT-GUIDE.md) | Local setup, testing, deployment |
 | [Product Backlog](artifacts/backlog.md) | Sprint-organized user stories |
