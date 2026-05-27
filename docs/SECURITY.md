@@ -120,7 +120,7 @@ try {
     .single();
 
   // Only upgrade if server explicitly confirms
-  if (!error && data?.tier === 'pro' || data?.tier === 'enterprise') {
+  if (!error && data?.tier && (data.tier === 'pro' || data.tier === 'enterprise')) {
     setTier(data.tier);
   }
 } catch {
@@ -194,8 +194,8 @@ All responses include defense-in-depth headers via Netlify configuration:
     # Prevent MIME type sniffing
     X-Content-Type-Options = "nosniff"
 
-    # Block framing (clickjacking prevention)
-    X-Frame-Options = "DENY"
+    # Allow framing only from same origin (needed for CMS iframe embedding)
+    X-Frame-Options = "SAMEORIGIN"
 
     # Legacy XSS filter
     X-XSS-Protection = "1; mode=block"
@@ -216,7 +216,7 @@ All responses include defense-in-depth headers via Netlify configuration:
       img-src 'self' data: blob: https:; \
       font-src 'self' https:; \
       connect-src 'self' https://*.supabase.co wss://*.supabase.co; \
-      frame-ancestors 'none';"
+      frame-ancestors 'self' https://gai-observe.online;"
 ```
 
 ### CSP Breakdown
@@ -228,7 +228,7 @@ All responses include defense-in-depth headers via Netlify configuration:
 | `style-src` | `'self' 'unsafe-inline'` | Allow CSS modules + inline component styles |
 | `img-src` | `'self' data: blob: https:` | Allow SVG templates, inline images, external images |
 | `connect-src` | `'self' https://*.supabase.co wss://*.supabase.co` | Allow Supabase API + WebSocket |
-| `frame-ancestors` | `'none'` | Prevent embedding in third-party iframes |
+| `frame-ancestors` | `'self' https://gai-observe.online` | Allow embedding only from CMS domain |
 
 ### Cache Strategy
 
@@ -314,6 +314,8 @@ This prevents:
 ---
 
 ## CORS Handling (RSS Proxy)
+
+> **Note:** The RSS proxy function and news widget are part of the production deployment but are not included in this sample repository. The patterns below document the production security architecture.
 
 The serverless RSS function handles cross-origin requests with explicit headers:
 

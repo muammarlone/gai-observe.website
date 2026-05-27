@@ -59,8 +59,7 @@ src/
 │   ├── supabase.js      # Supabase client (validates config)
 │   ├── featureGate.js   # Tier-based feature access
 │   ├── cipher.js        # SHA-256 book cipher verification
-│   ├── auditLog.js      # Client-side event queue
-│   └── pdfExport.js     # jsPDF journal export
+│   └── auditLog.js      # Client-side event queue
 ├── components/
 │   ├── RICESandbox.jsx       # RICE priority calculator
 │   ├── ABTestCalculator.jsx  # A/B test significance

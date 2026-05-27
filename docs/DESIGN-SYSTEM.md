@@ -104,9 +104,10 @@ All interactive elements include `aria-label` attributes:
 .panel {
   background: var(--panel-slate);
   border: 1px solid var(--panel-border);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-lg);    /* 12px */
   padding: var(--space-lg);
   margin-bottom: var(--space-lg);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
 }
 ```
 
@@ -117,14 +118,16 @@ All interactive elements include `aria-label` attributes:
   background: var(--accent-violet);
   color: white;
   border: none;
-  border-radius: var(--radius-sm);
-  padding: 12px 24px;
+  border-radius: var(--radius-md);    /* 8px */
+  padding: 10px 20px;
   font-weight: 600;
+  font-size: 0.875rem;
   cursor: pointer;
-  transition: background-color 0.15s ease;
+  min-height: 40px;
+  transition: background-color 0.15s ease, transform 0.1s ease;
 }
 
-.btn-primary:hover {
+.btn-primary:hover:not(:disabled) {
   background: var(--accent-violet-hover);
 }
 ```
@@ -134,11 +137,12 @@ All interactive elements include `aria-label` attributes:
 ```css
 .input-field {
   width: 100%;
-  padding: 12px 16px;
+  padding: 11px 12px;
   background: var(--bg-slate);
   border: 1px solid var(--panel-border);
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-md);    /* 8px */
   color: var(--text-primary);
+  font-size: 0.875rem;
 }
 ```
 
@@ -159,15 +163,22 @@ All interactive elements include `aria-label` attributes:
 
 ---
 
-## Responsive Breakpoints
+## Responsive Strategy
 
-The design uses CSS Grid with `auto-fit` for responsive layouts:
+The design primarily uses CSS Grid with `auto-fit` for responsive layouts:
 
 ```css
 grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 ```
 
-No explicit media queries. Components reflow naturally based on container width.
+Supplemented by two explicit media queries:
+
+| Breakpoint | Purpose |
+|------------|---------|
+| `max-width: 640px` | Stacks header, full-width selects, reduced panel padding |
+| `prefers-reduced-motion: reduce` | Disables all animations and transitions |
+
+Components reflow naturally via `auto-fit` grids; the 640px breakpoint handles layout elements that don't adapt intrinsically (header flex direction, select widths).
 
 ---
 

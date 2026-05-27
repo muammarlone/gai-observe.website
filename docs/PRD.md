@@ -49,7 +49,7 @@ Published nonfiction books are static artifacts. Readers absorb concepts passive
 | FR-05 | SVG template viewer with download capability | P0 | Done |
 | FR-06 | Feature-gated premium tier (fail-closed) | P1 | Done |
 | FR-07 | Audit event logging (client-side queue) | P1 | Done |
-| FR-08 | Multi-book support via config-driven routing | P1 | Done |
+| FR-08 | Multi-book support via config-driven routing | P1 | Infrastructure done (PM Handbook live) |
 | FR-09 | News feed aggregation (RSS/Atom) | P2 | Designed |
 | FR-10 | Platform status dashboard (ecosystem health) | P2 | Done |
 

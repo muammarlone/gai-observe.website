@@ -20,7 +20,7 @@ This repository contains the **Digital Companion 1.0** engine — a React-based 
 - Domain-specific calculators (RICE scoring, A/B test, churn analysis)
 - Downloadable SVG templates (stakeholder maps, GTM canvases)
 - Feature-gated premium tiers via Stripe integration
-- Real-time news feed aggregation
+- News feed aggregation ([designed](artifacts/news-feed-spec.md), serverless RSS proxy architecture)
 
 ### Built Entirely with Claude Code
 
